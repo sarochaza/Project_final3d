@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfuuv4saasy32"]
+
+[ext_resource type="PackedScene" uid="uid://dqhvw1620ggey" path="res://Assets Pack/Twisted Tree.glb" id="1_eahoq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bf1k0"]
+size = Vector3(1.0365, 5.04211, 0.880006)
+
+[node name="RedTree" type="StaticBody3D"]
+
+[node name="Root Scene" parent="." instance=ExtResource("1_eahoq")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.228431, 2.37729, -0.0222788)
+shape = SubResource("BoxShape3D_bf1k0")
