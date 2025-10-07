@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhtkx1by4t0ce"]
+
+[ext_resource type="PackedScene" uid="uid://bojga4tnhgs7i" path="res://Assets Pack/tavernprops/Dead Tree (1).glb" id="1_0ylms"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2fn3b"]
+size = Vector3(0.777222, 3.25787, 0.765137)
+
+[node name="DeadTree" type="StaticBody3D"]
+
+[node name="Root Scene" parent="." instance=ExtResource("1_0ylms")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12021, 1.12894, 0.273228)
+shape = SubResource("BoxShape3D_2fn3b")

@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://dugi6rwgsbcix"]
+
+[ext_resource type="Script" uid="uid://dtpeyrjfaf4my" path="res://Scenes/chest.gd" id="1_bagqn"]
+[ext_resource type="PackedScene" uid="uid://ca8t8hxncfn6q" path="res://Assets Pack/tavernprops/Chest.glb" id="1_cjfl1"]
+[ext_resource type="PackedScene" uid="uid://cn1ifcfkfq832" path="res://Assets Pack/tavernprops/Chest with Gold.glb" id="2_bagqn"]
+[ext_resource type="PackedScene" uid="uid://bhq4iq5o402d8" path="res://Scenes/key.tscn" id="2_pmguq"]
+[ext_resource type="PackedScene" uid="uid://8vv1sre2bxow" path="res://Scenes/potion.tscn" id="5_dq33m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cjfl1"]
+size = Vector3(1, 0.854553, 0.565765)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pmguq"]
+font_size = 25
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dq33m"]
+height = 0.0679932
+radius = 1.23389
+
+[node name="chest" type="StaticBody3D"]
+script = ExtResource("1_bagqn")
+key_scene = ExtResource("2_pmguq")
+potion_scene = ExtResource("5_dq33m")
+
+[node name="CloseChest" parent="." instance=ExtResource("1_cjfl1")]
+
+[node name="OpenChest" parent="." instance=ExtResource("2_bagqn")]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.359868, -0.00624084)
+shape = SubResource("BoxShape3D_cjfl1")
+
+[node name="Open" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="Open"]
+layout_mode = 0
+offset_left = 543.0
+offset_top = 350.0
+offset_right = 616.0
+offset_bottom = 392.0
+text = "open"
+label_settings = SubResource("LabelSettings_pmguq")
+
+[node name="Button2" type="ColorRect" parent="Open"]
+layout_mode = 0
+offset_left = 541.0
+offset_top = 310.0
+offset_right = 607.0
+offset_bottom = 347.0
+color = Color(0, 0, 0, 0.34902)
+
+[node name="E" type="Label" parent="Open/Button2"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 6.0
+offset_right = 67.0
+offset_bottom = 29.0
+text = "E"
+
+[node name="Check" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Check"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.477306, 0)
+shape = SubResource("CylinderShape3D_dq33m")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.951952, 0)
+light_color = Color(0.769828, 0.45236, 0, 1)
+light_energy = 1.323
+
+[connection signal="body_entered" from="Check" to="." method="_on_check_body_entered"]
+[connection signal="body_exited" from="Check" to="." method="_on_check_body_exited"]

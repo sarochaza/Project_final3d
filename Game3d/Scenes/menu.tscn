@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://c43m1oeoohboi"]
+
+[ext_resource type="Script" uid="uid://c6jfwb7uiqob5" path="res://menu.gd" id="1_xhh6f"]
+[ext_resource type="Texture2D" uid="uid://bx7k83iu3p8d7" path="res://Assets Pack/Background.png" id="2_cayip"]
+[ext_resource type="AudioStream" uid="uid://htmxlx81xf61" path="res://Assets Pack/Audio/horror-playhouse-404813.mp3" id="3_cayip"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwsa2"]
+bg_color = Color(0.355155, 0.0261511, 0.026132, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cayip"]
+bg_color = Color(0.151674, 1.09798e-07, 6.01634e-09, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_158mb"]
+bg_color = Color(0.49, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhh6f"]
+bg_color = Color(0.41, 0, 0, 0.819608)
+
+[node name="Menu" type="Node3D"]
+script = ExtResource("1_xhh6f")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(573, 322)
+scale = Vector2(0.750326, 0.645508)
+texture = ExtResource("2_cayip")
+
+[node name="Play" type="Button" parent="CanvasLayer"]
+offset_left = 827.0
+offset_top = 338.0
+offset_right = 1028.0
+offset_bottom = 413.0
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_wwsa2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cayip")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_158mb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xhh6f")
+text = "Play"
+
+[node name="Story" type="Button" parent="CanvasLayer"]
+offset_left = 829.0
+offset_top = 424.0
+offset_right = 1029.0
+offset_bottom = 498.0
+text = "Story
+"
+
+[node name="Quit" type="Button" parent="CanvasLayer"]
+offset_left = 829.0
+offset_top = 506.0
+offset_right = 1028.0
+offset_bottom = 578.0
+text = "Quit"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_cayip")
+
+[connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Story" to="." method="_on_story_pressed"]
+[connection signal="pressed" from="CanvasLayer/Quit" to="." method="_on_quit_pressed"]

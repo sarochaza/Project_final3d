@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://8vv1sre2bxow"]
+
+[ext_resource type="PackedScene" uid="uid://ocr88hk1dr3h" path="res://Assets Pack/tavernprops/bottleRed.glb" id="1_4l8vr"]
+[ext_resource type="Script" uid="uid://dpqdxabn21n" path="res://Scenes/potion.gd" id="1_nymo1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nymo1"]
+radius = 0.04554
+height = 0.234924
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xi5ht"]
+radius = 0.410764
+
+[node name="potion" type="StaticBody3D"]
+script = ExtResource("1_nymo1")
+
+[node name="bottleRed" parent="." instance=ExtResource("1_4l8vr")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00899293, 0.092434, 0.0415065)
+light_color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00155564, 0.0579822, 0.00165302)
+shape = SubResource("CapsuleShape3D_nymo1")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.999746, -0.0225477, 0, 0.0225477, 0.999746, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_xi5ht")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

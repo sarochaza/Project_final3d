@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://dd3x60nf8bheq"]
+
+[ext_resource type="PackedScene" uid="uid://bghe4hnud3ruf" path="res://note/Scroll.glb" id="1_qchjg"]
+[ext_resource type="Texture2D" uid="uid://ddtdx6ecmpumf" path="res://note/ฉบับที่ 1.png" id="2_2fre0"]
+
+[sub_resource type="GDScript" id="GDScript_2fre0"]
+script/source = "extends StaticBody3D
+
+@onready var canvas = $Control/note1
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	canvas.hide()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	canvas.show()
+
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	canvas.hide()
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2fre0"]
+size = Vector3(0.618195, 0.641479, 0.001)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2fre0"]
+radius = 0.612532
+
+[node name="note1" type="StaticBody3D"]
+script = SubResource("GDScript_2fre0")
+
+[node name="Scroll" parent="." instance=ExtResource("1_qchjg")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.986791, 0.162, 0, -0.162, 0.986791, 0.00389099, 0.0178681, 0.0151888)
+shape = SubResource("BoxShape3D_2fre0")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_2fre0")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="note1" type="Sprite2D" parent="Control"]
+position = Vector2(579, 325)
+scale = Vector2(0.390556, 0.390556)
+texture = ExtResource("2_2fre0")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

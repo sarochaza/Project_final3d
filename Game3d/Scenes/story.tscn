@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1d2saaywdxo4"]
+
+[ext_resource type="Script" uid="uid://cxnp26vgthfnv" path="res://Scenes/story.gd" id="1_lh3an"]
+[ext_resource type="Texture2D" uid="uid://bubfs0v6qifqq" path="res://Gemini_Generated_Image_s18l0xs18l0xs18l.png" id="2_gqu6k"]
+[ext_resource type="Texture2D" uid="uid://ddtdx6ecmpumf" path="res://note/ฉบับที่ 1.png" id="2_u5g7b"]
+[ext_resource type="Texture2D" uid="uid://12egbqjq6xdd" path="res://note/ฉบับที่ 1 (3).png" id="4_gqu6k"]
+[ext_resource type="AudioStream" uid="uid://cfx7s4k63hcgj" path="res://Assets Pack/Audio/paper-245786.mp3" id="5_gqu6k"]
+
+[node name="Story" type="Node3D"]
+script = ExtResource("1_lh3an")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(574, 426)
+scale = Vector2(1.23877, 0.958008)
+texture = ExtResource("2_gqu6k")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Sprite2D"]
+offset_left = -505.0
+offset_top = -462.0
+offset_right = 517.0
+offset_bottom = 265.0
+color = Color(0, 0, 0, 0.596078)
+
+[node name="note1" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(586, 333)
+scale = Vector2(0.410208, 0.383597)
+texture = ExtResource("2_u5g7b")
+
+[node name="note2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(584, 335.154)
+scale = Vector2(0.407057, 0.382045)
+texture = ExtResource("4_gqu6k")
+
+[node name="Next" type="Button" parent="CanvasLayer"]
+offset_left = 660.0
+offset_top = 472.0
+offset_right = 728.0
+offset_bottom = 512.0
+text = "NEXT"
+
+[node name="Back" type="Button" parent="CanvasLayer"]
+offset_left = 582.0
+offset_top = 472.0
+offset_right = 649.0
+offset_bottom = 511.0
+text = "BACK"
+
+[node name="Quit" type="Button" parent="CanvasLayer"]
+offset_left = 494.0
+offset_top = 473.0
+offset_right = 572.0
+offset_bottom = 511.0
+text = "QUIT"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_gqu6k")
+volume_db = 3.0
+
+[connection signal="pressed" from="CanvasLayer/Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="CanvasLayer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/Quit" to="." method="_on_quit_pressed"]

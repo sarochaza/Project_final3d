@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctk6heaxh0dpy"]
+
+[ext_resource type="PackedScene" uid="uid://ch48lcpmsofdy" path="res://Assets Pack/tavernprops/Pedestal.glb" id="1_218gy"]
+[ext_resource type="Script" uid="uid://cb0qnod0weo28" path="res://Scenes/statue.gd" id="1_ufaa2"]
+[ext_resource type="PackedScene" uid="uid://2qofhmay8iml" path="res://Assets Pack/AngelStatue.glb" id="2_ufaa2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1fxej"]
+size = Vector3(1.6337, 2.53857, 1.76794)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_218gy"]
+height = 0.458496
+radius = 1.72168
+
+[sub_resource type="LabelSettings" id="LabelSettings_218gy"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_ufaa2"]
+font_size = 20
+
+[node name="Statue" type="StaticBody3D"]
+script = ExtResource("1_ufaa2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0226874, 0.966165)
+light_color = Color(0.737434, 0.377575, 0.711537, 1)
+light_energy = 0.354
+
+[node name="Root Scene" parent="." instance=ExtResource("1_218gy")]
+
+[node name="AngelStatue" parent="." instance=ExtResource("2_ufaa2")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 3.29439, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0039435, 1.28345, -0.015758)
+shape = SubResource("BoxShape3D_1fxej")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08497, 0)
+shape = SubResource("CylinderShape3D_218gy")
+
+[node name="Open" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="Open"]
+layout_mode = 0
+offset_left = 541.0
+offset_top = 269.0
+offset_right = 614.0
+offset_bottom = 311.0
+text = "open"
+label_settings = SubResource("LabelSettings_218gy")
+
+[node name="Label2" type="Label" parent="Open/Label"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.5
+offset_top = 74.0
+offset_right = 99.5
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Soul of the Demon 5"
+label_settings = SubResource("LabelSettings_ufaa2")
+
+[node name="Button2" type="ColorRect" parent="Open"]
+layout_mode = 0
+offset_left = 541.0
+offset_top = 310.0
+offset_right = 607.0
+offset_bottom = 347.0
+color = Color(0, 0, 0, 0.34902)
+
+[node name="E" type="Label" parent="Open/Button2"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 6.0
+offset_right = 67.0
+offset_bottom = 29.0
+text = "E"
+
+[node name="Light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.90386, 0.586345)
+visible = false
+light_energy = 6.626
+light_size = 0.283
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
