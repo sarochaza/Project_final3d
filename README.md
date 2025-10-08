@@ -1,4 +1,6 @@
+Link Game :
 https://sarochaza.github.io/Project_final3d/
+https://silly-melba-4ce9d7.netlify.app/index.html (ver ล่าสุด)
 
 link รายงาน :https://docs.google.com/document/d/18p7qiPBFDborcGQ2Qr-QFZq-IrFexJGfgliyNxcwCzM/edit?tab=t.0
 
